@@ -18,5 +18,9 @@ Route::get('/blog/user/{id_user}',[UserController::class,'read'])->name('user');
 // ajouter une route vers les commentaires de l'article 
 Route::get('/blog/galerie/{id_galerie}/photos',[GalerieController::class,'read'])->name('galerie');
 
+//commentaire 
 Route::post('/comment',[CommentController::class,'create'])->name('comment');
+Route::get('/comment/{id_comment}/edit', [CommentController::class, 'edit'])->name('comment.edit');
+
 Route::delete('/delete/{id_comment}',[CommentController::class,'delete'])->name('delete');
+Route::patch('/update/{id_comment}',[CommentController::class,'update'])->name('update');

@@ -37,4 +37,29 @@ class CommentController extends Controller
         // Rediriger l'utilisateur après le traitement
         return redirect()->route('post',$id_post)->with('success','Commentaire supprimé avec succès');
     }
+
+    public function edit($id_comment)
+    {
+        // Récupérer le commentaire par son ID
+        $comment = Comment::findOrFail($id_comment);
+
+        // Retourner la vue avec le commentaire
+        return view('comment_update', compact('comment'));
+    }
+
+
+    public function update(Request $request,$id_comment)
+    {
+        // Récupérer les données validées
+        $comment = Comment::findOrFail($id_comment);
+        $comment -> lastname = $request->input('lastname');
+        $comment -> firstname = $request->input('firstname');
+        $comment -> email = $request->input('email');
+        $comment -> comments = $request->input('comments');
+
+        $comment->save();
+
+        // Rediriger l'utilisateur après le traitement
+        return redirect()->route('post',$comment->postid)->with('success','Commentaire modifié avec succès');
+    }
 }

@@ -31,6 +31,7 @@
 
                 @php
                     $delete = route('delete', ['id_comment' => $comment->id]);
+                    $update = route('update', ['id_comment' => $comment->id]);
                 @endphp
 
                 <hr>
@@ -39,11 +40,12 @@
                 <p> Email : {{ $comment->email }} </p>
                 <p> Commentaire : {{ $comment->comments }} </p>
 
-                <form method="POST" action="{{ $delete }}">
+                <form method="DELETE" action="{{ $delete }}">
                     @csrf
                     @method('DELETE') <!-- Spécifie la méthode DELETE -->
-                    <button type="submit" class="btn btn-danger">Supprimer</button>
+                    <button type="submit" >Supprimer</button>
                 </form>
+                <a href={{ route('comment.edit', ['id_comment' => $comment->id]) }} >Modifier</a>
                 
         @endforeach
     </article>
