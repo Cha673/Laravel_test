@@ -40,11 +40,12 @@
                 <p> Email : {{ $comment->email }} </p>
                 <p> Commentaire : {{ $comment->comments }} </p>
 
-                <form method="DELETE" action="{{ $delete }}">
+                <form method="POST" action={{ $delete }}>
                     @csrf
                     @method('DELETE') <!-- Spécifie la méthode DELETE -->
                     <button type="submit" >Supprimer</button>
                 </form>
+                
                 <a href={{ route('comment.edit', ['id_comment' => $comment->id]) }} >Modifier</a>
                 
         @endforeach

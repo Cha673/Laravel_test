@@ -25,6 +25,7 @@ class CommentController extends Controller
 
     public function delete(Request $request,$id_comment)
     {
+        dd('Méthode delete appelée avec ID : ' . $id_comment);
         // Récupérer les données validées
         $comment = Comment::findOrFail($id_comment);
 
